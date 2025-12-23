@@ -1,0 +1,21 @@
+{
+    "name": "minstrel-bot",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "drizzle:generate": "drizzle-kit generate",
+        "drizzle:push": "drizzle-kit push"
+    },
+    "dependencies": {
+        "@neondatabase/serverless": "^1.0.2",
+        "discord.js": "^14.25.1",
+        "dotenv": "^17.2.3",
+        "drizzle-kit": "^0.31.8",
+        "drizzle-orm": "^0.45.1",
+        "pg": "^8.16.3",
+        "postgres": "^3.4.7",
+        "winston": "^3.19.0"
+    }
+}
