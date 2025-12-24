@@ -24,7 +24,7 @@ A Discord bot that automatically saves music links shared in a designated channe
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ABritex/minstrel-bot.git
    cd minstrel-bot
    ```
 

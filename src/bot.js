@@ -28,11 +28,6 @@ export async function startBot() {
         if (message.author.bot) return;
         if (!message.guild) return;
 
-        if (isRateLimited(message.author.id)) {
-            await message.reply("You're sending too many messages. Please slow down.");
-            return;
-        }
-
         // Handle commands
         if (message.content.startsWith(PREFIX)) {
             const args = message.content.slice(PREFIX.length).trim().split(/ +/);
@@ -50,6 +45,11 @@ export async function startBot() {
         }
 
         if (message.channel.id !== SONG_CHANNEL_ID) return;
+
+        if (isRateLimited(message.author.id)) {
+            await message.reply("You're sending too many messages. Please slow down.");
+            return;
+        }
 
         const urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
         const allLinks = message.content.match(urlRegex);
