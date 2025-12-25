@@ -1,19 +1,22 @@
 # Minstrel Bot
 
-A Discord bot that automatically saves music links shared in a designated channel to a Neon PostgreSQL database, allowing server members to browse and access the collected music library through a companion website. Built with Node.js, Discord.js, and Drizzle ORM.
+A Discord bot that saves music links and displays them with titles. Features slash/prefix commands, pagination, and a web interface for browsing collected songs.
 
 ## Features
 
-- **Automatic Link Saving**: Detects and saves music URLs from YouTube, Spotify, SoundCloud, and Apple Music
-- **Song Title Display**: Shows actual song/video titles in commands using platform APIs
-- **URL Validation**: Rejects playlists and invalid links with user feedback
-- **Duplicate Prevention**: Avoids saving the same URL twice
-- **Rate Limiting**: Prevents spam with 5 messages per minute per user
-- **Rich Commands**: Supports both slash (/) and prefix (!) commands with embeds
-- **Bot Information**: Commands for bot stats, user profiles, and server info
-- **Production Ready**: Logging, health checks, graceful shutdown, and environment validation
-- **Database Integration**: Uses Drizzle ORM with Neon serverless PostgreSQL
-- **Website Integration**: Saved songs displayed on companion website
+- Automatic saving of music links from YouTube, Spotify, SoundCloud, Apple Music
+- Displays actual song/video titles using platform APIs
+- Slash and prefix commands with embeds
+- Interactive pagination with emoji reactions
+- Web interface for browsing collected songs
+- Database integration with Neon PostgreSQL
+
+## Web Interface
+
+Browse collected songs through our web interface:
+
+- **GitHub**: [minstel-web-cnq](https://github.com/ABritex/minstel-web-cnq)
+- **Website (requires you in the server)**: [minstel-web-cnq.vercel.app](https://minstel-web-cnq.vercel.app)
 
 ## Prerequisites
 
@@ -134,17 +137,6 @@ The `songs` table stores:
 | `WEBSITE_URL`     | Website URL for !songs command  | Yes                   |
 | `HEALTH_PORT`     | Health check server port        | No (defaults to 3000) |
 | `PORT`            | Render-assigned port            | No (used by Render)   |
-
-## Health Checks
-
-The bot includes a health check endpoint at `http://localhost:3000/health` (or configured port) that returns JSON status.
-
-## Logging
-
-Logs are written to:
-- Console (colorized)
-- `logs/error.log` (errors only)
-- `logs/combined.log` (all logs)
 
 ## License
 
