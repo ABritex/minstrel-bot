@@ -5,13 +5,15 @@ A Discord bot that automatically saves music links shared in a designated channe
 ## Features
 
 - **Automatic Link Saving**: Detects and saves music URLs from YouTube, Spotify, SoundCloud, and Apple Music
+- **Song Title Display**: Shows actual song/video titles in commands using platform APIs
 - **URL Validation**: Rejects playlists and invalid links with user feedback
 - **Duplicate Prevention**: Avoids saving the same URL twice
 - **Rate Limiting**: Prevents spam with 5 messages per minute per user
-- **Scalable Commands**: Dynamic command system with `!ping` and `!songs`
+- **Rich Commands**: Supports both slash (/) and prefix (!) commands with embeds
+- **Bot Information**: Commands for bot stats, user profiles, and server info
 - **Production Ready**: Logging, health checks, graceful shutdown, and environment validation
 - **Database Integration**: Uses Drizzle ORM with Neon serverless PostgreSQL
-- **Website Integration**: Saved songs can be displayed on a companion website for server members to browse
+- **Website Integration**: Saved songs displayed on companion website
 
 ## Prerequisites
 
@@ -41,7 +43,7 @@ A Discord bot that automatically saves music links shared in a designated channe
 4. Configure your `.env` file with:
    - `DISCORD_TOKEN`: Your Discord bot token
    - `SONG_CHANNEL_ID`: The ID of the channel where songs are shared
-   - `NEON_DB`: Your Neon database connection string
+   - `DATABASE_URL`: Your Neon database connection string
    - `WEBSITE_URL`: URL of your website for the `!songs` command
    - `HEALTH_PORT`: Port for health check server (optional, defaults to 3000)
 
@@ -83,19 +85,23 @@ Playlists are not supported and will be rejected.
 
 ### Adding New Commands
 
-Create a new file in `src/commands/` with this structure:
+Commands support both slash and prefix modes. Create files in `src/commands/` following this structure:
 
 ```javascript
-export const command = {
-  name: 'commandname',
+export default new Command({
+  name: 'newcommand',
   description: 'Command description',
-  execute: async (message, args) => {
-    // Command logic here
-  }
-};
+  category: 'info',
+  run: async ({ interaction }) => {
+    await interaction.followUp('Slash response');
+  },
+  prefixRun: async ({ message }) => {
+    await message.reply('Prefix response');
+  },
+});
 ```
 
-The command will be automatically loaded on startup.
+Commands are automatically loaded on startup.
 
 ### Database Schema
 
@@ -124,7 +130,7 @@ The `songs` table stores:
 | ----------------- | ------------------------------- | --------------------- |
 | `DISCORD_TOKEN`   | Discord bot token               | Yes                   |
 | `SONG_CHANNEL_ID` | Channel ID for song sharing     | Yes                   |
-| `NEON_DB`         | Neon database connection string | Yes                   |
+| `DATABASE_URL`    | Neon database connection string | Yes                   |
 | `WEBSITE_URL`     | Website URL for !songs command  | Yes                   |
 | `HEALTH_PORT`     | Health check server port        | No (defaults to 3000) |
 | `PORT`            | Render-assigned port            | No (used by Render)   |
@@ -142,4 +148,4 @@ Logs are written to:
 
 ## License
 
-MIT License
+[MIT License](LICENSE)

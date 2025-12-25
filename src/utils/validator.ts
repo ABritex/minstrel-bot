@@ -1,4 +1,4 @@
-const ALLOWED_DOMAINS = {
+const ALLOWED_DOMAINS: Record<string, string> = {
     "youtube.com": "YouTube",
     "youtu.be": "YouTube",
     "music.youtube.com": "YouTube Music",
@@ -7,7 +7,7 @@ const ALLOWED_DOMAINS = {
     "music.apple.com": "Apple Music"
 };
 
-export function isValidSongUrl(url) {
+export function isValidSongUrl(url: string): string | false {
     try {
         const urlObj = new URL(url);
         const domain = Object.keys(ALLOWED_DOMAINS).find(domain =>

@@ -1,6 +1,6 @@
-import { startBot, client } from "./bot.js";
-import { startHealthServer, stopHealthServer } from "./health.js";
-import logger from "./logger.js";
+import { startBot, client } from "./bot";
+import { startHealthServer, stopHealthServer } from "./health";
+import logger from "./logger";
 
 async function bootstrap() {
     logger.info("Starting Minstrel Bot...");
@@ -22,3 +22,4 @@ bootstrap().catch((error) => {
     logger.error("Failed to start bot", { error: error.message });
     process.exit(1);
 });
+

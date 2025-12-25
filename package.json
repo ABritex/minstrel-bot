@@ -2,9 +2,13 @@
     "name": "minstrel-bot",
     "version": "1.0.0",
     "type": "module",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "start": "node src/index.js",
+        "start": "tsx src/index.ts",
+        "start:dev": "tsx watch src/index.ts",
+        "start:prod": "node dist/index.js",
+        "build": "tsc",
+        "watch": "tsc -w",
         "drizzle:generate": "drizzle-kit generate",
         "drizzle:push": "drizzle-kit push"
     },
@@ -16,6 +20,15 @@
         "drizzle-orm": "^0.45.1",
         "pg": "^8.16.3",
         "postgres": "^3.4.7",
-        "winston": "^3.19.0"
+        "winston": "^3.19.0",
+        "zod": "^4.2.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.3.1",
+        "@types/pg": "^8.11.10",
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0",
+        "tsx": "^4.21.0",
+        "typescript": "^5.1.3"
     }
 }

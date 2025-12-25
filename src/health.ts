@@ -1,5 +1,5 @@
 import http from 'http';
-import logger from './logger.js';
+import logger from './logger';
 
 const PORT = process.env.PORT || process.env.HEALTH_PORT || 3000;
 

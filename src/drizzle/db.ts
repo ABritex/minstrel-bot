@@ -1,18 +1,17 @@
-import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { eq } from 'drizzle-orm';
-import { songs } from './schema.js';
-import logger from '../logger.js';
+import { songs, NewSong } from './schema';
+import logger from '../logger';
+import { DATABASE_URL } from '../config';
 
-const sql = neon(process.env.NEON_DB);
+const sql = neon(DATABASE_URL);
 export const db = drizzle(sql);
 
-export async function saveSong(song) {
+export async function saveSong(song: NewSong): Promise<void> {
     logger.info("Saving song", { song });
 
     try {
-        // Check for duplicates
         const existing = await db.select().from(songs).where(eq(songs.url, song.url));
         if (existing.length > 0) {
             logger.warn("Duplicate song URL, skipping", { url: song.url });

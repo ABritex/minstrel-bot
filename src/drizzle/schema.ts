@@ -9,3 +9,6 @@ export const songs = pgTable('songs', {
     url: text('url').notNull(),
     platform: text('platform'),
 });
+
+export type Song = typeof songs.$inferSelect;
+export type NewSong = typeof songs.$inferInsert;
