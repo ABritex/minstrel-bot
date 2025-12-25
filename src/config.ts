@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const envSchema = z.object({
-    NODE_ENV: z.enum(["dev", "prod"]).default("dev"),
+    NODE_ENV: z.enum(["dev", "prod", "production"]).default("dev"),
     DISCORD_TOKEN: z.string(),
     SONG_CHANNEL_ID: z.string(),
     DATABASE_URL: z.string().url(),
