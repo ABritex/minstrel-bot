@@ -19,7 +19,7 @@ export class ExtendedClient extends Client {
 
     constructor() {
         super({
-            intents: ["Guilds", "GuildMessages", "MessageContent", "GuildMessageReactions"],
+            intents: ["Guilds", "GuildMessages", "MessageContent", "GuildMessageReactions", "GuildVoiceStates"],
             partials: [Partials.Message, Partials.Channel, Partials.Reaction],
         });
     }

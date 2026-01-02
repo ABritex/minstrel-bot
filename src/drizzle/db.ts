@@ -11,6 +11,12 @@ export const db = drizzle(sql);
 export async function saveSong(song: NewSong): Promise<void> {
     logger.info("Saving song", { song });
 
+    // Validate URL before saving
+    if (!song.url || song.url === 'undefined' || song.url === 'null') {
+        logger.warn("Invalid song URL, not saving", { song });
+        return;
+    }
+
     try {
         const existing = await db.select().from(songs).where(eq(songs.url, song.url));
         if (existing.length > 0) {
